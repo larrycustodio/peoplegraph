@@ -14,8 +14,8 @@ const Figure = ({ status }: FigureProps) => {
     <svg
       xmlns="http://www.w3.org/2000/svg"
       xmlSpace="preserve"
-      width="50"
-      height="50"
+      width="36"
+      height="36"
       viewBox="0 0 556.38 556.38"
       className={STATUS_MAP[status] || STATUS_MAP["default"]}
     >

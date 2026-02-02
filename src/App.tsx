@@ -9,7 +9,7 @@ export default function App() {
 
   // Clamp values safely
   const safeBetter = Math.min(better, total);
-  const safeDevastating = Math.min(devastating, safeBetter);
+  const safeDevastating = Math.min(devastating, total - better);
   const unaffected = total - safeBetter - safeDevastating;
 
   const cells = Array.from({ length: 100 });
@@ -44,11 +44,24 @@ export default function App() {
         <Slider
           label="Harm"
           value={safeDevastating}
-          max={safeBetter}
+          max={total}
           onChange={setDevastating}
           color="text-red-600"
         />
-        <button onClick={resetSliders}>Reset</button>
+        <button className="p-1 px-2" onClick={resetSliders}>
+          Reset
+        </button>
+      </div>
+
+      {/* Summary */}
+      <div className="max-w-xl text-center text-gray-700">
+        <p>
+          Out of <strong>{total}</strong> people,{" "}
+          <strong className="text-green-600">{safeBetter}</strong> will have
+          benefit, <strong className="text-red-600">{safeDevastating}</strong>{" "}
+          will harm, and <strong>{unaffected}</strong> will experience no
+          meaningful change.
+        </p>
       </div>
 
       {/* Infographic */}
@@ -67,7 +80,7 @@ export default function App() {
           }
 
           return (
-            <div key={i} className="w-14 h-14 rounded-sm">
+            <div key={i} className="w-10 h-10 rounded-sm">
               <Figure status={status} />
             </div>
           );
@@ -79,17 +92,6 @@ export default function App() {
         <Legend color="bg-green-500" label="Benefit" />
         <Legend color="bg-red-500" label="Harm" />
         <Legend color="bg-gray-400" label="No change" />
-      </div>
-
-      {/* Summary */}
-      <div className="max-w-xl text-center text-gray-700">
-        <p>
-          Out of <strong>{total}</strong> people,{" "}
-          <strong className="text-green-600">{safeBetter}</strong> will have
-          benefit, <strong className="text-red-600">{safeDevastating}</strong>{" "}
-          will harm, and <strong>{unaffected}</strong> will experience no
-          meaningful change.
-        </p>
       </div>
     </div>
   );
