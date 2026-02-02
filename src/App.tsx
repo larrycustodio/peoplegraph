@@ -94,8 +94,15 @@ export default function App() {
     </div>
   );
 }
+interface SliderProps {
+  label: string;
+  value: number;
+  max?: number;
+  onChange: (value: number) => void;
+  color?: string;
+}
 
-function Slider({ label, value, max, onChange, color = "" }) {
+function Slider({ label, value, max, onChange, color = "" }: SliderProps) {
   const step = label.toLowerCase().includes("population") ? 1 : 0.1;
   return (
     <div>
@@ -125,7 +132,12 @@ function Slider({ label, value, max, onChange, color = "" }) {
   );
 }
 
-function Legend({ color, label }) {
+interface LegendProps {
+  color: string;
+  label: string;
+}
+
+function Legend({ color, label }: LegendProps) {
   return (
     <div className="flex items-center gap-2">
       <div className={`w-4 h-4 ${color} rounded-sm`} />

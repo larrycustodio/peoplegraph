@@ -5,7 +5,11 @@ const STATUS_MAP: Record<string, string> = {
   harm: "fill-red-500",
 };
 
-const Figure = ({ status }) => {
+interface FigureProps {
+  status: string;
+}
+
+const Figure = ({ status }: FigureProps) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
